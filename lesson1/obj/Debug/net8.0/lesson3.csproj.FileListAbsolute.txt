@@ -1,0 +1,7 @@
+M:\API\lesson3\lesson1\obj\Debug\net8.0\lesson3.csproj.AssemblyReference.cache
+M:\API\lesson3\lesson1\obj\Debug\net8.0\lesson3.GeneratedMSBuildEditorConfig.editorconfig
+M:\API\lesson3\lesson1\obj\Debug\net8.0\lesson3.AssemblyInfoInputs.cache
+M:\API\lesson3\lesson1\obj\Debug\net8.0\lesson3.AssemblyInfo.cs
+M:\API\lesson3\lesson1\obj\Debug\net8.0\lesson3.csproj.CoreCompileInputs.cache
+M:\API\lesson3\lesson1\obj\Debug\net8.0\lesson3.MvcApplicationPartsAssemblyInfo.cs
+M:\API\lesson3\lesson1\obj\Debug\net8.0\lesson3.MvcApplicationPartsAssemblyInfo.cache
