@@ -5,56 +5,68 @@ using System.Text.Json;
 using static System.Reflection.Metadata.BlobBuilder;
 using System;
 using System.Threading.Tasks;
+using System.Net.Mail;
+using Microsoft.Data.SqlClient;
+using TasksApi.Services.Logger;
 
 
 namespace lesson1.DAL
 {
     public class TaskDal : ITaskDal
     {
-
+        private readonly string _connectionString;
+        private readonly ILoggerService _logger;
         private readonly TasksDBContext _context;
-        
-        public TaskDal(TasksDBContext context)
+
+        public TaskDal(IConfiguration configuration, ILoggerService logger, TasksDBContext context)
         {
+            _connectionString = configuration.GetConnectionString("DefaultConnection");
+            _logger = logger;
             _context = context;
         }
 
+        
+
+   
         public List<Tasks> GetTasks()
         {
+            _logger.Log("Create User start:");
             return _context.Tasks.ToList();
         }
         public List<Tasks> GetByUser(int id)
         {
-            var task = _context.Tasks.Where(x => x.UserId==id);
+            var task = _context.Tasks.Where(x => x.UserId == id);
             if (task == null)
                 return new List<Tasks>();
             return task.ToList();
         }
-        public string AddTaskOne(Tasks t)
+        public bool AddTaskOne(Tasks t)
         {
-            var users = _context.Users.ToList();
-            var project = _context.project.ToList();
-            foreach(var user in users)
+            Project? project = _context.Project.Find(t.ProjectId);
+            User? user = _context.User.Find(t.UserId);
+            if (project != null && user != null)
             {
-                if(user.Id==t.UserId)
-                    foreach (var p in project)
-                    {
-                        if(p.Id== t.ProjectId)
-                        {
-                            _context.Add(t);
-                            _context.SaveChanges();
-                            return ("succesfull");
-                        }
-                       
-                    }
-                return ("no project exist");
+              
+                _context.Tasks.Add(t);
+                _context.SaveChanges();
+                return true;
             }
-            return ("no user exist");
+            return false;
         }
-        public void Add(Tasks tasks)
+        public bool Add(Tasks tasks)
         {
-            _context.Tasks.Add(tasks);
-            _context.SaveChanges();
+            Project? project = _context.Project.Find(tasks.ProjectId);
+            User? user = _context.User.Find(tasks.UserId);
+            if (project != null && user != null)
+            {
+                _logger.Log($"Create User start:{tasks.Priority}");
+                _context.Tasks.Add(tasks);
+                _context.SaveChanges();
+                return true;
+            }
+            return false;
+
+ 
         }
 
         public void Delete(int id)
@@ -79,6 +91,42 @@ namespace lesson1.DAL
             _context.Tasks.Update(tasks);
             _context.SaveChanges();
         }
+        //public bool ProcessTransaction(Attachment attachment, Tasks task)
+        //{
+        //    using (SqlConnection connection = new SqlConnection(_connectionString))
+        //    {
+        //        connection.Open();
+        //        SqlTransaction transaction = connection.BeginTransaction();
 
+        //        try
+        //        {
+        //            using (SqlCommand command1 = new SqlCommand("INSERT INTO Tasks (Priority, DueDate, Status, ProjectId, UserId) VALUES (@Priority, @DueDate, @Status, @ProjectId, @UserId)", connection, transaction))
+        //            {
+        //                command1.Parameters.AddWithValue("@Priority", task.Priority);
+        //                command1.Parameters.AddWithValue("@DueDate", task.DueDate);
+        //                command1.Parameters.AddWithValue("@Status", task.Status);
+        //                command1.Parameters.AddWithValue("@ProjectId", task.ProjectId);
+
+        //                command1.ExecuteNonQuery();
+        //            }
+
+        //            using (SqlCommand command2 = new SqlCommand("INSERT INTO Attachments (AttachPath, UploadDate) VALUES (@AttachPath, @UploadDate)", connection, transaction))
+        //            {
+        //                command2.Parameters.AddWithValue("@AttachPath", attachment.AttachPath);
+        //                command2.Parameters.AddWithValue("@UploadDate", attachment.UploadDate);
+        //                command2.ExecuteNonQuery();
+        //            }
+
+        //            transaction.Commit();
+        //            Console.WriteLine("Transaction committed.");
+        //            return true;
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            transaction.Rollback();
+        //            return false;
+        //        }
+        //    }
+        //}
     }
 }

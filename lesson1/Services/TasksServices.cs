@@ -63,10 +63,14 @@ namespace lesson1.Services
             var task = _taskDal.GetByUser(id);
             return task;
         }
-        public string AddTaskOne(Tasks t)
+        public bool AddTaskOne(Tasks t)
 
         {
             return _taskDal.AddTaskOne(t);
         }
+        //public bool Create(AttachmentWithTask model)
+        //{
+        //    return _taskDal.ProcessTransaction(model.Attachments, model.Tasks);
+        //}
     }
 }

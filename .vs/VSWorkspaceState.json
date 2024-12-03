@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\lesson1",
+    "\\lesson1\\controllers",
+    "\\lesson1\\DAL",
+    "\\lesson1\\models",
+    "\\lesson1\\Services"
+  ],
+  "SelectedNode": "\\lesson1\\controllers\\TasksController.cs",
+  "PreviewInSolutionExplorer": false
+}

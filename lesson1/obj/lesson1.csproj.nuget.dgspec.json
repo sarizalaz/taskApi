@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "M:\\API\\lesson3\\lesson1\\lesson1.csproj": {}
+    "M:\\API\\new\\lesson3\\lesson1\\lesson1.csproj": {}
   },
   "projects": {
-    "M:\\API\\lesson3\\lesson1\\lesson1.csproj": {
+    "M:\\API\\new\\lesson3\\lesson1\\lesson1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "M:\\API\\lesson3\\lesson1\\lesson1.csproj",
+        "projectUniqueName": "M:\\API\\new\\lesson3\\lesson1\\lesson1.csproj",
         "projectName": "lesson1",
-        "projectPath": "M:\\API\\lesson3\\lesson1\\lesson1.csproj",
+        "projectPath": "M:\\API\\new\\lesson3\\lesson1\\lesson1.csproj",
         "packagesPath": "C:\\Users\\326771516\\.nuget\\packages\\",
-        "outputPath": "M:\\API\\lesson3\\lesson1\\obj\\",
+        "outputPath": "M:\\API\\new\\lesson3\\lesson1\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -11,7 +11,8 @@ namespace lesson1.Services
         public List<Tasks> DeleteTask(int id);
         public List<Tasks> GetTasks();
         public List<Tasks> GetByUser(int id);
-        public string AddTaskOne(Tasks t);
+        public bool AddTaskOne(Tasks t);
+        //bool Create(AttachmentWithTask model);
 
     }
 }

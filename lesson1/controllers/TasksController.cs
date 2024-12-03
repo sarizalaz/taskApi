@@ -5,7 +5,7 @@ using static System.Reflection.Metadata.BlobBuilder;
 using System.Linq;
 using System.Net.NetworkInformation;
 using lesson1.Services;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace lesson1.controllers
 {
@@ -44,7 +44,7 @@ namespace lesson1.controllers
 
 
         [HttpPost]
-        public string AddTaskOne(Tasks t)
+        public bool AddTaskOne(Tasks t)
         {
             return _tasksService.AddTaskOne(t);
         }
@@ -69,8 +69,22 @@ namespace lesson1.controllers
 
             return Ok();
         }
-        
+        //[HttpPost]
+        //public IActionResult Create([FromBody] AttachmentWithTask model)
+        //{
+        //    if (model == null || model.attachment == null || model.Tasks == null)
+        //    {
+        //        return BadRequest("Attachment and Task are required.");
+        //    }
 
- 
-}  
+        //    bool success = _tasksService.Create(model);
+        //    if (success)
+        //    {
+        //        return Ok("Transaction completed successfully.");
+        //    }
+        //    return StatusCode(500, "Failed to process transaction.");
+        //}
+
+
+    }  
 }
